@@ -7,21 +7,21 @@ MAINTAINER Clifton King <cliftonk@gmail.com>
 ENV RUBY_MAJOR 2.0
 ENV RUBY_VERSION 2.0.0-p576
 ENV RUBY_URL http://cache.ruby-lang.org/pub/ruby/$RUBY_MAJOR/ruby-$RUBY_VERSION.tar.bz2
+ENV RUBY_SRC_DIR /usr/src/ruby
 
 RUN apt-get update \
     && apt-get install -y \
         bison=1:2.5.dfsg-2.1 \
         ruby=1:1.9.3 \
     && rm -rf /var/lib/apt/lists/* \
-    && mkdir -p /usr/src/ruby \
-    && wget -q -O - $RUBY_URL | tar -xjC /usr/src/ruby --strip-components=1 \
-    && cd /usr/src/ruby \
+    && mkdir -p $RUBY_SRC_DIR \
+    && wget -q -O - $RUBY_URL | tar -xjC $RUBY_SRC_DIR --strip-components=1 \
+    && cd $RUBY_SRC_DIR \
     && autoconf \
     && ./configure --disable-install-doc \
     && make -j"$(nproc)" \
     && apt-get purge -y --auto-remove bison ruby \
-    && make install \
-    && rm -r /usr/src/ruby
+    && make install
 
 # install rubygems
 ENV RUBYGEMS_VERSION 2.4.2

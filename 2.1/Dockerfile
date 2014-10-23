@@ -4,9 +4,8 @@ FROM orgsync/base-dev
 MAINTAINER Clifton King <cliftonk@gmail.com>
 
 # install ruby
-
-ENV RUBY_MAJOR 2.0
-ENV RUBY_VERSION 2.0.0-p576
+ENV RUBY_MAJOR 2.1
+ENV RUBY_VERSION 2.1.3
 ENV RUBY_URL http://cache.ruby-lang.org/pub/ruby/$RUBY_MAJOR/ruby-$RUBY_VERSION.tar.bz2
 
 RUN apt-get update \

@@ -6,22 +6,25 @@ MAINTAINER Clifton King <cliftonk@gmail.com>
 # install ruby
 ENV RUBY_MAJOR 2.1
 ENV RUBY_VERSION 2.1.3
-ENV RUBY_URL http://cache.ruby-lang.org/pub/ruby/$RUBY_MAJOR/ruby-$RUBY_VERSION.tar.bz2
 
 RUN apt-get update \
     && apt-get install -y \
         bison=1:2.5.dfsg-2.1 \
         ruby=1:1.9.3 \
-    && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /usr/src/ruby \
-    && wget -q -O - $RUBY_URL | tar -xjC /usr/src/ruby --strip-components=1 \
+    && wget -q -O - http://cache.ruby-lang.org/pub/ruby/$RUBY_MAJOR/ruby-$RUBY_VERSION.tar.bz2 \
+        | tar -xjC /usr/src/ruby --strip-components=1 \
     && cd /usr/src/ruby \
     && autoconf \
     && ./configure --disable-install-doc \
     && make -j"$(nproc)" \
     && apt-get purge -y --auto-remove bison ruby \
     && make install \
-    && rm -r /usr/src/ruby
+    && rm -r /usr/src/ruby \
+    && apt-get clean
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
+
 
 # install rubygems
 ENV RUBYGEMS_VERSION 2.4.2

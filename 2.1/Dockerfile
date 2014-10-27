@@ -21,10 +21,8 @@ RUN apt-get update \
     && apt-get purge -y --auto-remove bison ruby \
     && make install \
     && rm -r /usr/src/ruby \
-    && apt-get clean
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
-
 
 # install rubygems
 ENV RUBYGEMS_VERSION 2.4.2

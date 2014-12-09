@@ -18,6 +18,10 @@ ENV PATH $GEM_HOME/bin:$PATH
 # skip installing gem documentation
 RUN echo 'gem: --no-rdoc --no-ri' >> $HOME/.gemrc
 
+RUN gem install -v $RUBYGEMS_VERSION rubygems-update \
+    && update_rubygems \
+    && gem uninstall rubygems-update
+
 # install bundler
 ENV BUNDLER_VERSION 1.7.8
 RUN gem install bundler -v $BUNDLER_VERSION \

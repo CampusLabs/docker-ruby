@@ -5,7 +5,7 @@ MAINTAINER Clifton King <cliftonk@gmail.com>
 
 # install ruby
 ENV RUBY_MAJOR 2.2
-ENV RUBY_VERSION 2.2.0
+ENV RUBY_VERSION 2.2.1
 
 RUN apt-get update \
     && apt-get install -y \

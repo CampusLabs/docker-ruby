@@ -5,7 +5,7 @@ MAINTAINER Clifton King <cliftonk@gmail.com>
 
 # install ruby
 ENV RUBY_MAJOR 2.0
-ENV RUBY_VERSION 2.0.0-p481
+ENV RUBY_VERSION 2.0.0-p645
 
 RUN apt-get update \
     && apt-get install -y \
@@ -25,7 +25,7 @@ RUN apt-get update \
     && apt-get clean
 
 # install rubygems
-ENV RUBYGEMS_VERSION 2.4.2
+ENV RUBYGEMS_VERSION 2.4.6
 ENV GEM_HOME /usr/local/bundle
 ENV PATH $GEM_HOME/bin:$PATH
 
@@ -37,7 +37,7 @@ RUN gem install -v $RUBYGEMS_VERSION rubygems-update \
     && gem uninstall rubygems-update
 
 # install bundler
-ENV BUNDLER_VERSION 1.7.4
+ENV BUNDLER_VERSION 1.9.4
 RUN gem install bundler -v $BUNDLER_VERSION \
 	&& bundle config --global path "$GEM_HOME" \
 	&& bundle config --global bin "$GEM_HOME/bin"

@@ -25,7 +25,7 @@ RUN apt-get update \
     && apt-get clean
 
 # install rubygems
-ENV RUBYGEMS_VERSION 2.4.6
+ENV RUBYGEMS_VERSION 2.4.8
 ENV GEM_HOME /usr/local/bundle
 ENV PATH $GEM_HOME/bin:$PATH
 
@@ -37,7 +37,7 @@ RUN gem install -v $RUBYGEMS_VERSION rubygems-update \
     && gem uninstall rubygems-update
 
 # install bundler
-ENV BUNDLER_VERSION 1.9.4
+ENV BUNDLER_VERSION 1.10.6
 RUN gem install bundler -v $BUNDLER_VERSION \
 	&& bundle config --global path "$GEM_HOME" \
 	&& bundle config --global bin "$GEM_HOME/bin"

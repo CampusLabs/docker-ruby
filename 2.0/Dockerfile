@@ -1,16 +1,16 @@
 # influenced by the official docker ruby env
 # https://github.com/docker-library/ruby/blob/master/2.0/Dockerfile
-FROM orgsync/base-dev
-MAINTAINER Clifton King <cliftonk@gmail.com>
+FROM orgsync/base-dev:1.0.0
+MAINTAINER Joshua Griffith <joshua@orgsync.com>
 
 # install ruby
 ENV RUBY_MAJOR 2.0
-ENV RUBY_VERSION 2.0.0-p645
+ENV RUBY_VERSION 2.0.0-p647
 
 RUN apt-get update \
     && apt-get install -y \
-        bison=1:2.5.dfsg-2.1 \
-        ruby=1:1.9.3 \
+        bison \
+        ruby \
     && mkdir -p /usr/src/ruby \
     && wget -q -O - http://cache.ruby-lang.org/pub/ruby/$RUBY_MAJOR/ruby-$RUBY_VERSION.tar.bz2 \
         | tar -xjC /usr/src/ruby --strip-components=1 \

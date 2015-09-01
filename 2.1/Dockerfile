@@ -1,16 +1,16 @@
 # influenced by the official docker ruby env
 # https://github.com/docker-library/ruby/blob/master/2.0/Dockerfile
-FROM orgsync/base-dev
-MAINTAINER Clifton King <cliftonk@gmail.com>
+FROM orgsync/base-dev:1.0.0
+MAINTAINER Joshua Griffith <joshua@orgsync.com>
 
 # install ruby
 ENV RUBY_MAJOR 2.1
-ENV RUBY_VERSION 2.1.3
+ENV RUBY_VERSION 2.1.7
 
 RUN apt-get update \
     && apt-get install -y \
-        bison=1:2.5.dfsg-2.1 \
-        ruby=1:1.9.3 \
+        bison \
+        ruby \
     && mkdir -p /usr/src/ruby \
     && wget -q -O - http://cache.ruby-lang.org/pub/ruby/$RUBY_MAJOR/ruby-$RUBY_VERSION.tar.bz2 \
         | tar -xjC /usr/src/ruby --strip-components=1 \
@@ -25,7 +25,7 @@ RUN apt-get update \
     && apt-get clean
 
 # install rubygems
-ENV RUBYGEMS_VERSION 2.4.2
+ENV RUBYGEMS_VERSION 2.4.8
 ENV GEM_HOME /usr/local/bundle
 ENV PATH $GEM_HOME/bin:$PATH
 
@@ -37,7 +37,7 @@ RUN gem install -v $RUBYGEMS_VERSION rubygems-update \
     && gem uninstall rubygems-update
 
 # install bundler
-ENV BUNDLER_VERSION 1.7.4
+ENV BUNDLER_VERSION 1.10.6
 RUN gem install bundler -v $BUNDLER_VERSION \
 	&& bundle config --global path "$GEM_HOME" \
 	&& bundle config --global bin "$GEM_HOME/bin"

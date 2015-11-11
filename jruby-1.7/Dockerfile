@@ -1,4 +1,4 @@
-FROM orgsync/java8:1.8.0_45
+FROM quay.io/orgsync/java:1.8
 MAINTAINER Joshua Griffith
 
 # install jruby

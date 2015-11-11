@@ -1,6 +1,6 @@
 # influenced by the official docker ruby env
 # https://github.com/docker-library/ruby/blob/master/2.0/Dockerfile
-FROM quay.io/orgsync/base-dev:1.0.0
+FROM quay.io/orgsync/base-dev:1.0.1
 MAINTAINER Joshua Griffith <joshua@orgsync.com>
 
 # install ruby
